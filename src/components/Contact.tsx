@@ -132,10 +132,10 @@ const Contact = () => {
                 <label className="block text-white/60 text-sm mb-2">Project Type</label>
                 <select className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-white/30">
                   <option value="">Select a project type</option>
-                  <option value="commercial">Commercial Building</option>
-                  <option value="residential">Residential Complex</option>
-                  <option value="infrastructure">Infrastructure</option>
-                  <option value="industrial">Industrial Facility</option>
+                  <option value="commercial" className="text-black">Commercial Building</option>
+                  <option value="residential" className="text-black">Residential Complex</option>
+                  <option value="infrastructure" className="text-black">Infrastructure</option>
+                  <option value="industrial" className="text-black">Industrial Facility</option>
                 </select>
               </div>
 
