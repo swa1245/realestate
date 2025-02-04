@@ -1,10 +1,18 @@
 import React from 'react'
 import { motion } from "framer-motion";
+import service1 from '../assets/services/IMG_6209_cdbc559d-daba-45bf-8dc9-c97cfec8ef7e.jpg';
+import service2 from '../assets/services/MG_4612_b89f7246-2ceb-4efc-aae1-cde6ad4219f8.jpg';
+import service3 from '../assets/services/2020-10_1_CARAVANE_066_0948365f-4db1-4195-81cc-1654bed38982.webp';
+import service4 from '../assets/services/20240411_CARAVANE_DOMAINEDEPRIMARD-36_d5317bb6-a465-44d7-bd31-2d203f4240ee.webp';
+import service5 from '../assets/services/CARAVANE_LYDIE_4Q9A9897.webp';
+import service6 from '../assets/services/Caravane_Canapeetlits_34.webp';
+import service7 from '../assets/textures/1.webp'
+import service8 from '../assets/Bedsheets/1.webp'
 
 interface Service {
   title: string;
   description: string;
-  icon: string;
+  image: string;
   color: string;
   stats: {
     value: string;
@@ -14,63 +22,83 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "Property Management",
-    description: "Comprehensive property management services including maintenance, tenant screening, and rent collection.",
-    icon: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80",
-    color: "from-emerald-600 to-emerald-400",
+    title: "Luxury Interior Design",
+    description: "Transform your space into a masterpiece with our premium design solutions that perfectly blend sophistication with functionality.",
+    image: service1,
+    color: "from-amber-600 to-amber-400",
     stats: [
-      { value: "500+", label: "Properties Managed" },
-      { value: "98%", label: "Client Satisfaction" }
+      { value: "250+", label: "Elite Projects" },
+      { value: "100%", label: "Client Satisfaction" }
     ]
   },
   {
-    title: "Investment Advisory",
-    description: "Expert guidance on real estate investments, market analysis, and portfolio optimization.",
-    icon: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&q=80",
+    title: "Blankets Design",
+    description: "Experience the perfect harmony of modern aesthetics and comfort in our thoughtfully crafted living environments.",
+    image: service2,
     color: "from-blue-600 to-blue-400",
     stats: [
-      { value: "$2B+", label: "Assets Managed" },
-      { value: "25%", label: "Avg. ROI" }
+      { value: "180+", label: "Premium Projects" },
+      { value: "20+", label: "Design Awards" }
     ]
   },
   {
-    title: "Interior Design",
-    description: "Professional interior design services to transform properties into stunning living spaces.",
-    icon: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=500&q=80",
+    title: "Curtain Design",
+    description: "Elevate your space with our curated selection of contemporary furniture and decor pieces.",
+    image: service3,
     color: "from-purple-600 to-purple-400",
     stats: [
-      { value: "200+", label: "Projects Completed" },
-      { value: "15+", label: "Design Awards" }
+      { value: "300+", label: "Unique Designs" },
+      { value: "50+", label: "Global Partners" }
     ]
   },
   {
-    title: "Legal Assistance",
-    description: "Comprehensive legal support for property transactions, contracts, and documentation.",
-    icon: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=500&q=80",
-    color: "from-red-600 to-red-400",
+    title: "Towels ",
+    description: "Create a home that tells your story through our expert residential styling and interior decoration services.",
+    image: service4,
+    color: "from-rose-600 to-rose-400",
     stats: [
-      { value: "1000+", label: "Cases Handled" },
-      { value: "100%", label: "Success Rate" }
+      { value: "150+", label: "Happy Homes" },
+      { value: "10+", label: "Style Awards" }
     ]
   },
   {
-    title: "Home Loans",
-    description: "Tailored financing solutions with competitive rates and flexible terms.",
-    icon: "https://images.unsplash.com/photo-1580605365717-0a4137b3d511?w=500&q=80",
-    color: "from-yellow-500 to-yellow-300",
+    title: "Sofa Couch Design",
+    description: "Transform commercial spaces into inspiring environments that enhance productivity and brand image.",
+    image: service5,
+    color: "from-emerald-600 to-emerald-400",
     stats: [
-      { value: "$5B+", label: "Loans Processed" },
-      { value: "3.5%", label: "Avg. Interest Rate" }
+      { value: "200+", label: "Business Spaces" },
+      { value: "95%", label: "Client Retention" }
     ]
   },
   {
-    title: "Property Valuation",
-    description: "Accurate property valuations using advanced market analysis tools.",
-    icon: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=500&q=80",
-    color: "from-pink-600 to-pink-400",
+    title: "Cushion Design",
+    description: "Bespoke furniture solutions tailored to your space and style preferences.",
+    image: service6,
+    color: "from-indigo-600 to-indigo-400",
     stats: [
-      { value: "5000+", label: "Properties Valued" },
-      { value: "99%", label: "Accuracy Rate" }
+      { value: "500+", label: "Custom Pieces" },
+      { value: "15+", label: "Craftsman Awards" }
+    ]
+  },
+  {
+    title: "Texture Design",
+    description: "Elevate your space with our curated selection of contemporary furniture and decor pieces.",
+    image: service7,
+    color: "from-purple-600 to-purple-400",
+    stats: [
+      { value: "300+", label: "Unique Designs" },
+      { value: "50+", label: "Global Partners" }
+    ]
+  },
+  {
+    title: "Bedsheets Design",
+    description: "Transform commercial spaces into inspiring environments that enhance productivity and brand image.",
+    image: service8,
+    color: "from-emerald-600 to-emerald-400",
+    stats: [
+      { value: "200+", label: "Business Spaces" },
+      { value: "95%", label: "Client Retention" }
     ]
   }
 ];
@@ -80,129 +108,70 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: index * 0.2 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="relative group"
+      className="relative group  h-[400px] "
     >
-      <div className="relative h-screen overflow-hidden rounded-[2rem] bg-white/5 backdrop-blur-sm">
-        <div className="aspect-[4/5] relative overflow-hidden">
-          <motion.div 
-            className="absolute inset-0 bg-gradient-to-br bg-opacity-80 z-10"
-            style={{ 
-              backgroundImage: `linear-gradient(to bottom right, ${service.color.split(' ')[1]}, ${service.color.split(' ')[3]})`,
-              opacity: 0.1
-            }}
-            whileHover={{ opacity: 0.2 }}
-            transition={{ duration: 0.3 }}
-          />
-          <motion.img
-            src={service.icon}
-            alt={service.title}
-            className="w-full h-full object-cover"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.7 }}
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-20" />
-        </div>
-
-        <div className="absolute bottom-0 left-0 right-0 p-8 z-30">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="mb-6"
-          >
-            <div className={`inline-flex px-4 py-2 rounded-full bg-gradient-to-r ${service.color} text-white text-sm font-medium mb-4`}>
-              {service.title}
-            </div>
-            <p className="font-['Plus_Jakarta_Sans'] text-white/80 text-base leading-relaxed transform-gpu transition-all duration-300 group-hover:text-white">
-              {service.description}
-            </p>
-          </motion.div>
-
-          <motion.div 
-            className="grid grid-cols-2 gap-4 mt-6"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            {service.stats.map((stat, idx) => (
-              <div key={idx} className="text-center p-3 rounded-xl bg-white/5 backdrop-blur-sm">
-                <div className="font-['Playfair_Display'] text-2xl font-bold text-white mb-1">
-                  {stat.value}
-                </div>
-                <div className="font-['Plus_Jakarta_Sans'] text-white/60 text-sm">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
-          </motion.div>
-        </div>
+      {/* Image Container */}
+      <div className="w-full h-full  overflow-hidden ">
+        <motion.img
+          src={service.image}
+          alt={service.title}
+          className="w-full h-full object-cover transform group-hover:scale-110 transition-all duration-700"
+          initial={{ scale: 1.2, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.8 }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/90 group-hover:opacity-80 transition-all duration-300" />
       </div>
+
+      {/* Title */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 p-6 text-center"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        <h3 className="text-2xl font-bold text-white font-['Plus_Jakarta_Sans'] tracking-wide">
+          {service.title}
+        </h3>
+      </motion.div>
     </motion.div>
   );
 };
 
 const Page3 = () => {
   return (
-    <div className="min-h-screen w-screen bg-[#111111] relative overflow-y-auto">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.1),rgba(255,255,255,0))] fixed" />
-      
-      <div className="relative px-20 mt-10 py-24 min-h-screen">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-20"
-        >
-          <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="w-20 h-[2px] bg-white/30" />
-            <span className="text-white/60 font-['Plus_Jakarta_Sans'] uppercase tracking-wider">
-              What We Offer
-            </span>
-            <div className="w-20 h-[2px] bg-white/30" />
-          </div>
-          
-          <h1 className="font-['Playfair_Display'] text-7xl font-bold text-white mb-6">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="min-h-screen  bg-black py-20 px-4 sm:px-6 lg:px-8"
+    >
+      <motion.div
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8 }}
+        className=" mb-16"
+      >
+        <div className="flex items-center mt-20 gap-4 mb-8">
+          <div className="w-20 h-[2px] bg-white/30" />
+          <span className="text-white/60 font-['Plus_Jakarta_Sans'] uppercase tracking-wider">
             Our Services
-          </h1>
-          <p className="font-['Plus_Jakarta_Sans'] text-white/60 text-xl max-w-3xl mx-auto leading-relaxed">
-            Comprehensive real estate solutions tailored to your needs. Discover our range of premium services 
-            designed to make your property journey seamless and exceptional.
-          </p>
-        </motion.div>
-
-        <motion.div 
-          className="grid grid-cols-3 gap-8 mb-24"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-        >
-          {services.map((service, index) => (
-            <ServiceCard key={index} service={service} index={index} />
-          ))}
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          className="text-center pb-12"
-        >
-          <motion.button 
-            className="px-10 py-5 bg-gradient-to-r from-white to-gray-200 text-black font-['Plus_Jakarta_Sans'] font-semibold rounded-full 
-                     hover:from-gray-100 hover:to-white transition-all duration-300 transform hover:scale-105"
-            whileHover={{ boxShadow: "0 0 30px rgba(255,255,255,0.2)" }}
-            whileTap={{ scale: 0.98 }}
-          >
-            Schedule a Consultation
-          </motion.button>
-        </motion.div>
+          </span>
+        </div>
+        
+        <h1 className="font-['Playfair_Display'] text-7xl font-bold text-white mb-12">
+          Featured Services
+        </h1>
+      </motion.div>
+      
+      <div className="max-w-7.5xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 px-4">
+        {services.map((service, index) => (
+          <ServiceCard key={index} service={service} index={index} />
+        ))}
       </div>
-    </div>
+    </motion.div>
   );
 };
 

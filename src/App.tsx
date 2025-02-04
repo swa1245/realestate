@@ -13,6 +13,8 @@ const App = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
 
   const navVariants = {
     opened: (deg: string) => ({
@@ -61,7 +63,7 @@ const App = () => {
         )}
       </AnimatePresence>
 
-      <motion.div 
+      <motion.div
         className="h-screen w-screen cursor-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: isLoading ? 0 : 1 }}
@@ -71,7 +73,7 @@ const App = () => {
         <div className="h-screen w-screen bg-[#111111] relative">
           {/* Background and overlay */}
           <motion.img
-            src="./src/assets/bgimg.webp"
+            src="./src/assets/filters_quality(80).webp"
             alt="background"
             variants={imgVariants}
             animate={open ? "scaleDown" : "scaleNormal"}
@@ -85,7 +87,7 @@ const App = () => {
           {/* Navigation */}
           <div className="fixed top-0 left-0 right-0 z-50">
             <div className="w-full p-6 flex justify-between items-center">
-              <motion.div 
+              <motion.div
                 className="flex items-center gap-4"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -97,13 +99,49 @@ const App = () => {
                 </svg>
                 <div>
                   <h1 className="font-['Playfair_Display'] text-2xl font-bold text-white">
-                    StructuraVision
+                    LuxeLiving
                   </h1>
                   <p className="text-xs text-white/60 font-['Plus_Jakarta_Sans'] tracking-wider">
-                    ENGINEERING & ARCHITECTURE
+                    ELEVATED INTERIORS & DESIGN
                   </p>
                 </div>
               </motion.div>
+              <div>
+                <div
+                  className="relative z-50"
+                  onMouseEnter={() => setIsDropdownOpen(true)}
+                  onMouseLeave={() => setIsDropdownOpen(false)}
+                >
+                  <h1 className="font-['Playfair_Display'] text-center text-2xl font-bold text-white cursor-pointer">
+                    SHOP BY CATEGORY
+                  </h1>
+
+                  {/* Dropdown Menu */}
+                  <AnimatePresence>
+                    {isDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.3 }}
+                        className="absolute left-1/2 w-full -translate-x-1/2 mt-2 w-64 bg-gray-100 text-black shadow-lg rounded-lg"
+                      >
+                        <ul className="py-2 z-50">
+                          {["Cushions", "Blankets", "Curtains", "Towels"].map((item) => (
+                            <li
+                              key={item}
+                              className="px-6 py-3 hover:bg-gray-200 transition duration-200 cursor-pointer"
+                            >
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+              </div>
               <motion.div
                 className="space-y-1.5 cursor-pointer p-2 z-50"
                 onClick={toggleMenu}
@@ -144,16 +182,16 @@ const App = () => {
                   className="absolute inset-0 z-10"
                 >
                   <div className="h-screen flex items-center justify-center">
-                    <motion.div 
+                    <motion.div
                       className="text-center relative"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 1 }}
                     >
                       {/* Decorative Elements */}
-                      <motion.div 
+                      <motion.div
                         className="absolute -top-20 left-1/2 -translate-x-1/2 w-[1px] h-16 bg-white/20"
-                        animate={{ 
+                        animate={{
                           height: [64, 48, 64],
                           opacity: [0.2, 0.5, 0.2]
                         }}
@@ -171,13 +209,13 @@ const App = () => {
                         <div className="w-20 h-[1px] bg-white/20" />
                       </div>
                       <h1 className="font-['Playfair_Display'] text-7xl text-white mb-6">
-                        Engineering
+                        ELEVATED INTERIORS
                       </h1>
                       <h2 className="font-['Playfair_Display'] text-8xl font-bold text-white mb-8">
-                        Excellence
+                        DESIGN
                       </h2>
                       <p className="text-white/60 max-w-2xl mx-auto mb-12 font-['Plus_Jakarta_Sans']">
-                        Transforming visions into reality through innovative structural design and architectural excellence.
+                        Crafting beautiful and functional spaces that reflect your unique style and elevate everyday living.
                       </p>
                       <motion.button
                         className="px-10 py-5 bg-transparent border-2 border-white text-white font-['Plus_Jakarta_Sans'] 
@@ -248,9 +286,8 @@ const App = () => {
             {[1, 2, 3, 4, 5].map((page) => (
               <motion.div
                 key={page}
-                className={`w-3 h-3 rounded-full cursor-pointer ${
-                  currentPage === page ? 'bg-white' : 'bg-white/30'
-                }`}
+                className={`w-3 h-3 rounded-full cursor-pointer ${currentPage === page ? 'bg-white' : 'bg-white/30'
+                  }`}
                 onClick={() => setCurrentPage(page)}
                 whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.95 }}

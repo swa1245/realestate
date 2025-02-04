@@ -220,6 +220,7 @@ const Navbar: React.FC<NavbarProps> = ({ onClose, onNavigate }) => {
             </div>
           </motion.div>
         </div>
+        
       </div>
     </motion.div>
   );
