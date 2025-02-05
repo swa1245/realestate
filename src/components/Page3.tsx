@@ -8,6 +8,7 @@ import service5 from '../assets/services/CARAVANE_LYDIE_4Q9A9897.webp';
 import service6 from '../assets/services/Caravane_Canapeetlits_34.webp';
 import service7 from '../assets/textures/1.webp'
 import service8 from '../assets/Bedsheets/1.webp'
+import { Link } from 'react-router-dom';
 
 interface Service {
   title: string;
@@ -105,6 +106,7 @@ const services: Service[] = [
 
 const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
   return (
+    <Link to={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}>
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -137,6 +139,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         </h3>
       </motion.div>
     </motion.div>
+    </Link>
   );
 };
 
