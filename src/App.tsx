@@ -8,6 +8,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
 import Loader from "./components/Loader";
+import LuxuryInterior from "./components/services/LuxuryInterior";
 
 const App = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -239,7 +240,7 @@ const App = () => {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 z-10"
                 >
-                  <Projects />
+                  <Page2 />
                 </motion.div>
               )}
               {currentPage === 3 && (
@@ -263,7 +264,7 @@ const App = () => {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 z-10"
                 >
-                  <About />
+                  <LuxuryInterior />
                 </motion.div>
               )}
               {currentPage === 5 && (

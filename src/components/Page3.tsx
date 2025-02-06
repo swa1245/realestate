@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { motion } from "framer-motion";
 import service1 from '../assets/services/IMG_6209_cdbc559d-daba-45bf-8dc9-c97cfec8ef7e.jpg';
 import service2 from '../assets/services/MG_4612_b89f7246-2ceb-4efc-aae1-cde6ad4219f8.jpg';
@@ -6,15 +6,15 @@ import service3 from '../assets/services/2020-10_1_CARAVANE_066_0948365f-4db1-41
 import service4 from '../assets/services/20240411_CARAVANE_DOMAINEDEPRIMARD-36_d5317bb6-a465-44d7-bd31-2d203f4240ee.webp';
 import service5 from '../assets/services/CARAVANE_LYDIE_4Q9A9897.webp';
 import service6 from '../assets/services/Caravane_Canapeetlits_34.webp';
-import service7 from '../assets/textures/1.webp'
-import service8 from '../assets/Bedsheets/1.webp'
-import { Link } from 'react-router-dom';
+import service7 from '../assets/Bedsheets/couvre-lit-coton-le-vert-doux-pp-5.webp';
+import service8 from '../assets/Bedsheets/BONSOIRS-DECORATION-COUVRE-LIT-SATIN-HOUBLON-PP-2-GADS_d80d6399-dd32-4b3c-9da7-17eab40a21ef.webp';
 
 interface Service {
   title: string;
   description: string;
   image: string;
   color: string;
+  pageNumber: number;
   stats: {
     value: string;
     label: string;
@@ -27,6 +27,7 @@ const services: Service[] = [
     description: "Transform your space into a masterpiece with our premium design solutions that perfectly blend sophistication with functionality.",
     image: service1,
     color: "from-amber-600 to-amber-400",
+    pageNumber: 4,
     stats: [
       { value: "250+", label: "Elite Projects" },
       { value: "100%", label: "Client Satisfaction" }
@@ -37,6 +38,7 @@ const services: Service[] = [
     description: "Experience the perfect harmony of modern aesthetics and comfort in our thoughtfully crafted living environments.",
     image: service2,
     color: "from-blue-600 to-blue-400",
+    pageNumber: 5,
     stats: [
       { value: "180+", label: "Premium Projects" },
       { value: "20+", label: "Design Awards" }
@@ -47,16 +49,18 @@ const services: Service[] = [
     description: "Elevate your space with our curated selection of contemporary furniture and decor pieces.",
     image: service3,
     color: "from-purple-600 to-purple-400",
+    pageNumber: 6,
     stats: [
       { value: "300+", label: "Unique Designs" },
       { value: "50+", label: "Global Partners" }
     ]
   },
   {
-    title: "Towels ",
+    title: "Towels",
     description: "Create a home that tells your story through our expert residential styling and interior decoration services.",
     image: service4,
     color: "from-rose-600 to-rose-400",
+    pageNumber: 7,
     stats: [
       { value: "150+", label: "Happy Homes" },
       { value: "10+", label: "Style Awards" }
@@ -67,6 +71,7 @@ const services: Service[] = [
     description: "Transform commercial spaces into inspiring environments that enhance productivity and brand image.",
     image: service5,
     color: "from-emerald-600 to-emerald-400",
+    pageNumber: 8,
     stats: [
       { value: "200+", label: "Business Spaces" },
       { value: "95%", label: "Client Retention" }
@@ -77,6 +82,7 @@ const services: Service[] = [
     description: "Bespoke furniture solutions tailored to your space and style preferences.",
     image: service6,
     color: "from-indigo-600 to-indigo-400",
+    pageNumber: 9,
     stats: [
       { value: "500+", label: "Custom Pieces" },
       { value: "15+", label: "Craftsman Awards" }
@@ -87,6 +93,7 @@ const services: Service[] = [
     description: "Elevate your space with our curated selection of contemporary furniture and decor pieces.",
     image: service7,
     color: "from-purple-600 to-purple-400",
+    pageNumber: 10,
     stats: [
       { value: "300+", label: "Unique Designs" },
       { value: "50+", label: "Global Partners" }
@@ -97,6 +104,7 @@ const services: Service[] = [
     description: "Transform commercial spaces into inspiring environments that enhance productivity and brand image.",
     image: service8,
     color: "from-emerald-600 to-emerald-400",
+    pageNumber: 11,
     stats: [
       { value: "200+", label: "Business Spaces" },
       { value: "95%", label: "Client Retention" }
@@ -105,17 +113,21 @@ const services: Service[] = [
 ];
 
 const ServiceCard = ({ service, index }: { service: Service; index: number }) => {
+  const setCurrentPage = (pageNumber: number) => {
+    window.dispatchEvent(new CustomEvent('setPage', { detail: pageNumber }));
+  };
+
   return (
-    <Link to={`/services/${service.title.toLowerCase().replace(/\s+/g, "-")}`}>
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 1, delay: index * 0.2 }}
       viewport={{ once: true }}
-      className="relative group  h-[400px] "
+      onClick={() => setCurrentPage(service.pageNumber)}
+      className="relative group h-[400px] cursor-pointer"
     >
       {/* Image Container */}
-      <div className="w-full h-full  overflow-hidden ">
+      <div className="w-full h-full overflow-hidden">
         <motion.img
           src={service.image}
           alt={service.title}
@@ -139,7 +151,6 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         </h3>
       </motion.div>
     </motion.div>
-    </Link>
   );
 };
 
@@ -149,13 +160,13 @@ const Page3 = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen  bg-black py-20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen bg-black py-20 px-4 sm:px-6 lg:px-8"
     >
       <motion.div
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className=" mb-16"
+        className="mb-16"
       >
         <div className="flex items-center mt-20 gap-4 mb-8">
           <div className="w-20 h-[2px] bg-white/30" />
