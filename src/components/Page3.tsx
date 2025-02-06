@@ -104,7 +104,7 @@ const services: Service[] = [
     description: "Transform commercial spaces into inspiring environments that enhance productivity and brand image.",
     image: service8,
     color: "from-emerald-600 to-emerald-400",
-    pageNumber: 11,
+    pageNumber: 12,
     stats: [
       { value: "200+", label: "Business Spaces" },
       { value: "95%", label: "Client Retention" }
@@ -124,7 +124,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
       transition={{ duration: 1, delay: index * 0.2 }}
       viewport={{ once: true }}
       onClick={() => setCurrentPage(service.pageNumber)}
-      className="relative group h-[400px] cursor-pointer"
+      className="relative group h-[400px] cursor-pointer hover:scale-105 transition-transform duration-300"
     >
       {/* Image Container */}
       <div className="w-full h-full overflow-hidden">

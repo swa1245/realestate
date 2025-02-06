@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 
 interface PropertyCard {
@@ -7,299 +7,348 @@ interface PropertyCard {
   price: string;
   image: string;
   location: string;
+  video?: string;
   specs: {
     beds: number;
     baths: number;
     sqft: string;
   };
+  features: string[];
+  style: string;
 }
 
 const properties: PropertyCard[] = [
   {
     title: "Modern Villa",
-    description: "Luxurious 4-bedroom villa with panoramic views",
+    description: "Experience luxury living at its finest with this stunning contemporary villa featuring panoramic views, smart home integration, and premium finishes throughout.",
     price: "$2,500,000",
-    image: "./src/assets/img1.webp",
+    image: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071&auto=format&fit=crop",
+    video: "https://cdn.coverr.co/videos/coverr-walking-through-a-modern-house-5244/1080p.mp4",
     location: "Beverly Hills",
     specs: {
       beds: 4,
       baths: 5,
       sqft: "4,500"
-    }
+    },
+    features: ["Smart Home System", "Infinity Pool", "Wine Cellar", "Home Theater"],
+    style: "Contemporary"
   },
   {
     title: "Urban Loft",
-    description: "Contemporary loft in the heart of downtown",
+    description: "Sophisticated urban living meets industrial chic in this meticulously designed loft featuring exposed brick walls, soaring ceilings, and premium appliances.",
     price: "$850,000",
-    image: "./src/assets/img2.webp",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2053&auto=format&fit=crop",
     location: "Manhattan",
     specs: {
       beds: 2,
       baths: 2,
       sqft: "1,800"
-    }
+    },
+    features: ["High Ceilings", "Custom Kitchen", "City Views", "Private Terrace"],
+    style: "Industrial"
   },
   {
     title: "Seaside Manor",
-    description: "Beachfront property with private access",
+    description: "Indulge in coastal luxury with this breathtaking beachfront estate offering private beach access, panoramic ocean views, and resort-style amenities.",
     price: "$3,200,000",
-    image: "./src/assets/img3.webp",
+    image: "https://images.unsplash.com/photo-1613977257363-707ba9348227?q=80&w=2070&auto=format&fit=crop",
+    video: "https://cdn.coverr.co/videos/coverr-modern-living-room-with-window-4599/1080p.mp4",
     location: "Malibu",
     specs: {
       beds: 5,
       baths: 6,
       sqft: "5,200"
-    }
+    },
+    features: ["Private Beach", "Outdoor Kitchen", "Guest House", "Spa"],
+    style: "Mediterranean"
   },
   {
-    title: "Mountain Retreat",
-    description: "Cozy cabin with stunning mountain views",
-    price: "$1,200,000",
-    image: "./src/assets/img4.webp",
-    location: "Aspen",
+    title: "Zen Garden Residence",
+    description: "A harmonious blend of indoor and outdoor living, this Japanese-inspired residence offers tranquil gardens, meditation spaces, and minimalist design elements.",
+    price: "$4,100,000",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2070&auto=format&fit=crop",
+    location: "Kyoto",
+    specs: {
+      beds: 4,
+      baths: 4,
+      sqft: "3,800"
+    },
+    features: ["Meditation Room", "Koi Pond", "Tea House", "Bamboo Garden"],
+    style: "Japanese Modern"
+  },
+  {
+    title: "Parisian Penthouse",
+    description: "Exquisite Haussmanian-style apartment combining classic French architecture with contemporary luxury, featuring ornate moldings and Eiffel Tower views.",
+    price: "$5,800,000",
+    image: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=2070&auto=format&fit=crop",
+    location: "Paris",
     specs: {
       beds: 3,
       baths: 3,
-      sqft: "2,800"
-    }
+      sqft: "2,900"
+    },
+    features: ["Period Details", "Wine Room", "Library", "Terrace"],
+    style: "French Classical"
+  },
+  {
+    title: "Nordic Haven",
+    description: "Embrace Scandinavian design principles in this light-filled home featuring clean lines, natural materials, and seamless indoor-outdoor living spaces.",
+    price: "$1,950,000",
+    image: "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?q=80&w=2070&auto=format&fit=crop",
+    location: "Stockholm",
+    specs: {
+      beds: 3,
+      baths: 2,
+      sqft: "2,200"
+    },
+    features: ["Sauna", "Fireplace", "Garden Studio", "Eco-Friendly"],
+    style: "Scandinavian"
+  },
+  {
+    title: "Dubai Sky Palace",
+    description: "Ultra-luxury sky residence offering panoramic city views, smart automation throughout, and world-class amenities in the heart of Dubai.",
+    price: "$7,500,000",
+    image: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?q=80&w=2070&auto=format&fit=crop",
+    video: "https://cdn.coverr.co/videos/coverr-luxury-apartment-interior-2741/1080p.mp4",
+    location: "Dubai",
+    specs: {
+      beds: 5,
+      baths: 7,
+      sqft: "8,500"
+    },
+    features: ["Private Elevator", "Smart Home", "Indoor Pool", "Cinema"],
+    style: "Modern Luxury"
+  },
+  {
+    title: "Tuscan Villa",
+    description: "Authentic Italian villa set among rolling hills, featuring hand-painted frescoes, vintage wine cellar, and classic Mediterranean architecture.",
+    price: "$4,800,000",
+    image: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?q=80&w=2070&auto=format&fit=crop",
+    location: "Florence",
+    specs: {
+      beds: 6,
+      baths: 5,
+      sqft: "6,200"
+    },
+    features: ["Olive Grove", "Wine Cellar", "Pizza Oven", "Pool"],
+    style: "Italian Classical"
   }
 ];
 
-const PropertyCard = ({ property }: { property: PropertyCard }) => {
-  return (
-    <motion.div 
-      className="min-w-[700px] h-[85vh] relative rounded-[2rem] overflow-hidden mx-6 flex-shrink-0 group"
-      whileHover={{ scale: 1.02 }}
-      transition={{ duration: 0.3 }}
-    >
-      <motion.img 
-        src={property.image} 
-        alt={property.title}
-        className="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/90" />
-      
-      {/* Location Tag */}
-      <motion.div 
-        className="absolute top-8 left-8 px-4 py-2 rounded-full bg-white/10 backdrop-blur-md"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.2 }}
-      >
-        <span className="font-['Plus_Jakarta_Sans'] text-white/90">
-          {property.location}
-        </span>
-      </motion.div>
+const PropertyCard = ({ property, index }: { property: PropertyCard; index: number }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
 
-      {/* Price Tag */}
-      <motion.div 
-        className="absolute top-8 right-8 px-6 py-3 rounded-full bg-white text-black font-['Plus_Jakarta_Sans'] font-bold text-lg"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3 }}
-      >
-        {property.price}
-      </motion.div>
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0.8, 1, 1, 0.8]);
+
+  return (
+    <motion.div
+      ref={cardRef}
+      style={{ y, opacity, scale }}
+      className="relative w-full h-screen overflow-hidden"
+    >
+      {/* Background Media */}
+      <div className="absolute inset-0">
+        {property.video ? (
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src={property.video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <motion.img
+            src={property.image}
+            alt={property.title}
+            className="w-full h-full object-cover"
+            initial={{ scale: 1.2 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.8 }}
+          />
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
+      </div>
 
       {/* Content */}
-      <div className="absolute bottom-0 left-0 w-full p-10">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-        >
-          <h3 className="font-['Playfair_Display'] text-5xl font-bold mb-4 text-white">
-            {property.title}
-          </h3>
-          <p className="font-['Plus_Jakarta_Sans'] text-xl mb-6 text-white/80 max-w-xl">
-            {property.description}
-          </p>
-        </motion.div>
+      <div className="absolute inset-0 flex items-center justify-center">
+        <div className="max-w-7xl mx-auto px-6 w-full">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+          >
+            {/* Left Column - Details */}
+            <div className="space-y-8">
+              <div>
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100px" }}
+                  transition={{ duration: 1 }}
+                  className="h-1 bg-white mb-6"
+                />
+                <motion.span
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  transition={{ delay: 0.5 }}
+                  className="text-white/60 uppercase tracking-wider text-sm"
+                >
+                  {property.style} Style
+                </motion.span>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 }}
+                  className="text-5xl lg:text-7xl font-['Playfair_Display'] text-white mt-2"
+                >
+                  {property.title}
+                </motion.h2>
+              </div>
 
-        {/* Specs */}
-        <motion.div 
-          className="flex items-center gap-6 mt-6 pb-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <div className="flex items-center gap-2">
-            <svg className="w-6 h-6 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            <span className="font-['Plus_Jakarta_Sans'] text-white/80">
-              {property.specs.beds} Beds
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-6 h-6 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <span className="font-['Plus_Jakarta_Sans'] text-white/80">
-              {property.specs.baths} Baths
-            </span>
-          </div>
-          <div className="flex items-center gap-2">
-            <svg className="w-6 h-6 text-white/80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
-            </svg>
-            <span className="font-['Plus_Jakarta_Sans'] text-white/80">
-              {property.specs.sqft} sq.ft
-            </span>
-          </div>
-        </motion.div>
+              <motion.p
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-white/80 text-lg max-w-xl"
+              >
+                {property.description}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.5 }}
+                className="flex items-center gap-8 text-white/80"
+              >
+                <div>
+                  <span className="block text-3xl font-bold">{property.specs.beds}</span>
+                  <span className="text-sm">Bedrooms</span>
+                </div>
+                <div>
+                  <span className="block text-3xl font-bold">{property.specs.baths}</span>
+                  <span className="text-sm">Bathrooms</span>
+                </div>
+                <div>
+                  <span className="block text-3xl font-bold">{property.specs.sqft}</span>
+                  <span className="text-sm">Square Feet</span>
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.6 }}
+                className="flex flex-wrap gap-3"
+              >
+                {property.features.map((feature, i) => (
+                  <span
+                    key={feature}
+                    className="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white/90 text-sm"
+                  >
+                    {feature}
+                  </span>
+                ))}
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: 0.7 }}
+                className="flex items-center gap-6"
+              >
+                <span className="text-4xl font-['Playfair_Display'] text-white">
+                  {property.price}
+                </span>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-8 py-3 bg-white text-black rounded-full font-medium hover:bg-white/90 transition-colors"
+                >
+                  View Property
+                </motion.button>
+              </motion.div>
+            </div>
+
+            {/* Right Column - Location */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative"
+            >
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-white/5 backdrop-blur-lg rounded-full flex items-center justify-center">
+                <div className="text-center">
+                  <div className="text-white/60 text-sm">Location</div>
+                  <div className="text-white font-medium">{property.location}</div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        </div>
       </div>
     </motion.div>
   );
 };
 
 interface Page2Props {
-  onScrollEnd: () => void;
+  onScrollEnd?: () => void;
 }
 
 const Page2 = ({ onScrollEnd }: Page2Props) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
-  const handleScroll = () => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const maxScroll = container.scrollWidth - container.clientWidth;
-    const currentScroll = container.scrollLeft;
-    
-    if (maxScroll - currentScroll < 50 && currentScroll > 0) {
-      onScrollEnd();
-    }
-  };
-
-  useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
-
-    const wheelHandler = (e: WheelEvent) => {
-      e.preventDefault();
-      container.scrollLeft += e.deltaY;
-      handleScroll();
-    };
-
-    container.addEventListener('wheel', wheelHandler, { passive: false });
-    return () => container.removeEventListener('wheel', wheelHandler);
-  }, []);
-
-  const handleMouseDown = (e: React.MouseEvent) => {
-    setIsDragging(true);
-    setStartX(e.pageX - containerRef.current!.offsetLeft);
-    setScrollLeft(containerRef.current!.scrollLeft);
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-    handleScroll();
-  };
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - containerRef.current!.offsetLeft;
-    const walk = (x - startX) * 2;
-    containerRef.current!.scrollLeft = scrollLeft - walk;
-  };
+  // Progress bar animation
+  const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <motion.div 
-      className="h-screen w-screen bg-[#111111] relative overflow-hidden"
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      {/* Header Content */}
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="absolute top-32 left-20 z-10 max-w-2xl"
-      >
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-20 h-[2px] bg-white/30" />
-          <span className="text-white/60 font-['Plus_Jakarta_Sans'] uppercase tracking-wider">
-            Our Collection
-          </span>
-        </div>
-        <h1 className="font-['Playfair_Display'] text-7xl font-bold text-white mb-6">
-          Featured Properties
-        </h1>
-        <p className="font-['Plus_Jakarta_Sans'] text-white/60 text-xl max-w-xl leading-relaxed">
-          Discover our handpicked selection of premium properties across the most sought-after locations.
-          Each property is carefully selected to meet our exceptional standards.
-        </p>
-      </motion.div>
-      
-      {/* Properties Slider */}
-      <div 
-        ref={containerRef}
-        className="absolute top-0 left-0 w-full h-full overflow-x-scroll scrollbar-hide cursor-grab active:cursor-grabbing"
-        style={{ 
-          paddingLeft: '45%',
-          touchAction: 'pan-x'
-        }}
-        onMouseDown={handleMouseDown}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onMouseMove={handleMouseMove}
-        onScroll={handleScroll}
-      >
-        <div className="flex items-center h-full py-10">
-          {properties.map((property, index) => (
-            <PropertyCard key={index} property={property} />
-          ))}
-        </div>
+    <div ref={containerRef} className="relative bg-[#111111]">
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-white origin-left z-50"
+        style={{ scaleX }}
+      />
+
+      {/* Property Cards */}
+      <div className="relative">
+        {properties.map((property, index) => (
+          <PropertyCard key={property.title} property={property} index={index} />
+        ))}
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-12 left-20 z-10 flex items-center gap-6"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8 }}
-      >
-        <div className="flex flex-col">
-          <span className="font-['Plus_Jakarta_Sans'] text-white/40 text-sm uppercase tracking-wider mb-2">
-            Discover More
-          </span>
-          <span className="font-['Plus_Jakarta_Sans'] text-white/80">
-            Scroll or drag to explore
-          </span>
-        </div>
-        <motion.div 
-          className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center"
-          animate={{ 
-            scale: [1, 1.1, 1],
-            borderColor: ["rgba(255,255,255,0.2)", "rgba(255,255,255,0.4)", "rgba(255,255,255,0.2)"]
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <motion.div 
-            className="w-1.5 h-1.5 bg-white/60 rounded-full"
-            animate={{ 
-              y: [0, 4, 0],
-              opacity: [0.6, 1, 0.6]
+      {/* Navigation Dots */}
+      <div className="fixed right-10 top-1/2 -translate-y-1/2 z-50 space-y-4">
+        {properties.map((_, index) => (
+          <motion.div
+            key={index}
+            className={`w-3 h-3 rounded-full cursor-pointer ${
+              activeIndex === index ? 'bg-white' : 'bg-white/30'
+            }`}
+            onClick={() => {
+              const element = document.querySelectorAll('.property-card')[index];
+              element?.scrollIntoView({ behavior: 'smooth' });
+              setActiveIndex(index);
             }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
+            whileHover={{ scale: 1.2 }}
+            whileTap={{ scale: 0.95 }}
+            animate={{ scale: activeIndex === index ? 1.2 : 1 }}
           />
-        </motion.div>
-      </motion.div>
-    </motion.div>
+        ))}
+      </div>
+    </div>
   );
 };
 

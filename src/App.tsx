@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Page2 from "./components/Page2";
 import Page3 from "./components/Page3";
@@ -9,6 +9,8 @@ import Contact from "./components/Contact";
 import CustomCursor from "./components/CustomCursor";
 import Loader from "./components/Loader";
 import LuxuryInterior from "./components/services/LuxuryInterior";
+import BlanketDesign from "./components/services/BlanketDesign";
+import BedsheetsDesign from "./components/services/BedsheetsDesign";
 
 const App = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -45,7 +47,7 @@ const App = () => {
   };
 
   const handleScrollEnd = () => {
-    setCurrentPage(prev => Math.min(prev + 1, 5));
+    setCurrentPage(prev => Math.min(prev + 1, 12));
   };
 
   const toggleMenu = () => {
@@ -55,6 +57,18 @@ const App = () => {
   const handleNavigate = (page: number) => {
     setCurrentPage(page);
   };
+
+  useEffect(() => {
+    const handleSetPage = (event: CustomEvent) => {
+      setCurrentPage(event.detail);
+    };
+
+    window.addEventListener('setPage' as any, handleSetPage);
+
+    return () => {
+      window.removeEventListener('setPage' as any, handleSetPage);
+    };
+  }, []);
 
   return (
     <>
@@ -276,7 +290,19 @@ const App = () => {
                   transition={{ duration: 0.5 }}
                   className="absolute inset-0 z-10"
                 >
-                  <Contact />
+                  <BlanketDesign />
+                </motion.div>
+              )}
+              {currentPage === 12 && (
+                <motion.div
+                  key="page12"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10"
+                >
+                  <BedsheetsDesign />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -284,7 +310,7 @@ const App = () => {
 
           {/* Page Navigation Dots */}
           <div className="fixed right-10 top-1/2 -translate-y-1/2 z-50 space-y-4">
-            {[1, 2, 3, 4, 5].map((page) => (
+            {[1, 2, 3, 4, 5, 12].map((page) => (
               <motion.div
                 key={page}
                 className={`w-3 h-3 rounded-full cursor-pointer ${currentPage === page ? 'bg-white' : 'bg-white/30'
