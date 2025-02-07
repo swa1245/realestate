@@ -11,6 +11,11 @@ import Loader from "./components/Loader";
 import LuxuryInterior from "./components/services/LuxuryInterior";
 import BlanketDesign from "./components/services/BlanketDesign";
 import BedsheetsDesign from "./components/services/BedsheetsDesign";
+import CurtainDesign from "./components/services/CurtainDesign";
+import TowelDesign from "./components/services/TowelDesign";
+import TextureDesign from "./components/services/TextureDesign";
+import AboutUs from "./components/AboutUs";
+import SofaCouchDesign from "./components/services/SofaCouchDesign";
 
 const App = () => {
   const [open, setOpen] = useState<boolean>(false);
@@ -293,6 +298,66 @@ const App = () => {
                   <BlanketDesign />
                 </motion.div>
               )}
+              {currentPage === 6 && (
+                <motion.div
+                  key="page6"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10"
+                >
+                  <CurtainDesign />
+                </motion.div>
+              )}
+              {currentPage === 7 && (
+                <motion.div
+                  key="page7"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10"
+                >
+                  <TowelDesign />
+                </motion.div>
+              )}
+              {currentPage === 8 && (
+                <motion.div
+                  key="page8"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10"
+                >
+                  <TextureDesign />
+                </motion.div>
+              )}
+              {currentPage === 9 && (
+                <motion.div
+                  key="page9"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10"
+                >
+                  <AboutUs />
+                </motion.div>
+              )}
+              {currentPage === 10 && (
+                <motion.div
+                  key="page10"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 z-10"
+                >
+                  <SofaCouchDesign />
+                </motion.div>
+              )}
               {currentPage === 12 && (
                 <motion.div
                   key="page12"
@@ -310,7 +375,7 @@ const App = () => {
 
           {/* Page Navigation Dots */}
           <div className="fixed right-10 top-1/2 -translate-y-1/2 z-50 space-y-4">
-            {[1, 2, 3, 4, 5, 12].map((page) => (
+            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12].map((page) => (
               <motion.div
                 key={page}
                 className={`w-3 h-3 rounded-full cursor-pointer ${currentPage === page ? 'bg-white' : 'bg-white/30'

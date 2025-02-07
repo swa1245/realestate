@@ -7,11 +7,11 @@ interface NavbarProps {
 }
 
 const navItems = [
-  { title: "Home", page: 1 },
-  { title: "Projects", page: 2 },
-  { title: "Services", page: 3 },
-  { title: "About", page: 4 },
-  { title: "Contact", page: 5 }
+  { name: "Home", link: "/", pageNumber: 1 },
+  { name: "About Us", link: "/about", pageNumber: 9 },
+  { name: "Services", link: "/services", pageNumber: 3 },
+  { name: "Projects", link: "/projects", pageNumber: 2 },
+  { name: "Contact", link: "/contact", pageNumber: 11 }
 ];
 
 const Navbar: React.FC<NavbarProps> = ({ onClose, onNavigate }) => {
@@ -111,13 +111,13 @@ const Navbar: React.FC<NavbarProps> = ({ onClose, onNavigate }) => {
             <ul className="space-y-4">
               {navItems.map((item, i) => (
                 <motion.li
-                  key={item.title}
+                  key={item.name}
                   variants={contentVariants}
                   custom={i}
                   className="overflow-hidden"
                 >
                   <motion.button
-                    onClick={() => handleNavigation(item.page)}
+                    onClick={() => handleNavigation(item.pageNumber)}
                     className="nav-item font-['Playfair_Display'] text-[5rem] text-white hover:text-gray-300 transition-colors block relative group"
                     whileHover="hover"
                   >
@@ -131,7 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({ onClose, onNavigate }) => {
                         }
                       }}
                     />
-                    {item.title}
+                    {item.name}
                   </motion.button>
                 </motion.li>
               ))}

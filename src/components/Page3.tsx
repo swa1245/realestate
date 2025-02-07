@@ -6,7 +6,7 @@ import service3 from '../assets/services/2020-10_1_CARAVANE_066_0948365f-4db1-41
 import service4 from '../assets/services/20240411_CARAVANE_DOMAINEDEPRIMARD-36_d5317bb6-a465-44d7-bd31-2d203f4240ee.webp';
 import service5 from '../assets/services/CARAVANE_LYDIE_4Q9A9897.webp';
 import service6 from '../assets/services/Caravane_Canapeetlits_34.webp';
-import service7 from '../assets/Bedsheets/couvre-lit-coton-le-vert-doux-pp-5.webp';
+import service7 from '../assets/textures/1.webp';
 import service8 from '../assets/Bedsheets/BONSOIRS-DECORATION-COUVRE-LIT-SATIN-HOUBLON-PP-2-GADS_d80d6399-dd32-4b3c-9da7-17eab40a21ef.webp';
 
 interface Service {
@@ -51,30 +51,30 @@ const services: Service[] = [
     color: "from-purple-600 to-purple-400",
     pageNumber: 6,
     stats: [
-      { value: "300+", label: "Unique Designs" },
-      { value: "50+", label: "Global Partners" }
+      { value: "150+", label: "Unique Designs" },
+      { value: "98%", label: "Client Satisfaction" }
     ]
   },
   {
-    title: "Towels",
-    description: "Create a home that tells your story through our expert residential styling and interior decoration services.",
+    title: "Towel Design",
+    description: "Experience luxury in every touch with our premium collection of towels crafted for ultimate comfort.",
     image: service4,
-    color: "from-rose-600 to-rose-400",
+    color: "from-teal-600 to-teal-400",
     pageNumber: 7,
     stats: [
-      { value: "150+", label: "Happy Homes" },
-      { value: "10+", label: "Style Awards" }
+      { value: "100%", label: "Premium Cotton" },
+      { value: "120+", label: "Unique Designs" }
     ]
   },
   {
     title: "Sofa Couch Design",
-    description: "Transform commercial spaces into inspiring environments that enhance productivity and brand image.",
+    description: "Experience luxury comfort with our handcrafted sofas and couches, designed for modern living.",
     image: service5,
     color: "from-emerald-600 to-emerald-400",
-    pageNumber: 8,
+    pageNumber: 10,
     stats: [
-      { value: "200+", label: "Business Spaces" },
-      { value: "95%", label: "Client Retention" }
+      { value: "150+", label: "Unique Designs" },
+      { value: "100%", label: "Premium Quality" }
     ]
   },
   {
@@ -90,13 +90,13 @@ const services: Service[] = [
   },
   {
     title: "Texture Design",
-    description: "Elevate your space with our curated selection of contemporary furniture and decor pieces.",
+    description: "Discover our exquisite collection of handcrafted textures and patterns for your luxury interior spaces.",
     image: service7,
     color: "from-purple-600 to-purple-400",
-    pageNumber: 10,
+    pageNumber: 8,
     stats: [
-      { value: "300+", label: "Unique Designs" },
-      { value: "50+", label: "Global Partners" }
+      { value: "200+", label: "Unique Patterns" },
+      { value: "100%", label: "Custom Design" }
     ]
   },
   {

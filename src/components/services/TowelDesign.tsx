@@ -1,13 +1,15 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import interior1 from '../../assets/services/2020-10_1_CARAVANE_066_0948365f-4db1-4195-81cc-1654bed38982.webp';
-import interior2 from '../../assets/services/CRVN_20240909_SHOPS-024_HD_94ff941a-106f-46ec-925d-d6805225da0b.webp';
-import interior3 from '../../assets/services/MG_5079.webp';
-import interior4 from '../../assets/services/MG_4617.webp';
-import interior5 from '../../assets/services/HSC_RAANA_-_BISCUIT.webp';
-import interior6 from '../../assets/services/CARAVANE_LYDIE_4Q9A9897.webp';
+import towel1 from '../../assets/towels/BONSOIRS-SERVIETTE-BAIN-VERT-FORET-PP-1_471ba20e-f8e2-4071-b950-fef6fa9371f3.webp';
+import towel2 from '../../assets/towels/Bonsoirs-drap-bain-coton-ivoire-pp-1.webp';
+import towel3 from '../../assets/towels/Bonsoirs-set-bain-coton-ivoire-pp-1.webp';
+import towel4 from '../../assets/towels/bonsoirs-serviette-bain-coton-rayure_texturee_marron-pp-1.webp';
+import towel5 from '../../assets/towels/bonsoirs-serviette-bain-wavy-creme-noir-pp-1.webp';
+import towel6 from '../../assets/towels/bonsoirs-serviette-de-toilette-wavy-raye-terracotta-rose-pp-1_41dad0e2-ff6d-4b22-b77f-d80f8a0498af.webp';
+import towel7 from '../../assets/towels/serviette-toilette-nid-abeille-le-sable-pp-1.webp';
+import towel8 from '../../assets/towels/set-bain-nid-abeille-le-sable-pp-1_2.webp';
 
-const LuxuryInterior = () => {
+const TowelDesign = () => {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -24,69 +26,69 @@ const LuxuryInterior = () => {
 
   const features = [
     {
-      title: "Bespoke Design",
-      description: "Tailored interior solutions for your unique space",
+      title: "Premium Cotton",
+      description: "Ultra-soft, highly absorbent materials",
       icon: "✧"
     },
     {
-      title: "Premium Materials",
-      description: "Curated selection of luxury materials",
+      title: "Artisanal Design",
+      description: "Elegant patterns and textures",
       icon: "❖"
     },
     {
-      title: "Expert Styling",
-      description: "Professional interior styling services",
+      title: "Quick Drying",
+      description: "Advanced moisture-wicking technology",
       icon: "◈"
     },
     {
-      title: "Full Service",
-      description: "End-to-end project management",
+      title: "Eco-Friendly",
+      description: "Sustainable materials and processes",
       icon: "✦"
     }
   ];
 
   const collections = [
     {
-      title: "Modern Elegance",
-      image: interior1,
-      description: "Contemporary luxury with timeless appeal",
-      price: "Custom Quote",
-      tag: "SIGNATURE"
-    },
-    {
-      title: "Boutique Living",
-      image: interior2,
-      description: "Sophisticated retail-inspired spaces",
-      price: "Custom Quote",
+      title: "Forest Green Luxury",
+      image: towel1,
+      description: "Premium bath towel in rich forest green",
+      price: "€89",
       tag: "PREMIUM"
     },
     {
-      title: "Urban Oasis",
-      image: interior3,
-      description: "Tranquil city living environments",
-      price: "Custom Quote",
+      title: "Ivory Cotton Classic",
+      image: towel2,
+      description: "Classic bath sheet in pure ivory cotton",
+      price: "€79",
+      tag: "ESSENTIAL"
+    },
+    {
+      title: "Ivory Bath Set",
+      image: towel3,
+      description: "Complete bath set in elegant ivory",
+      price: "€199",
       tag: "LUXURY"
     },
     {
-      title: "Classic Revival",
-      image: interior4,
-      description: "Traditional elegance reimagined",
-      price: "Custom Quote",
-      tag: "HERITAGE"
+      title: "Textured Brown Stripe",
+      image: towel4,
+      description: "Sophisticated striped pattern in brown",
+      price: "€69",
+      tag: "CLASSIC"
     },
     {
-      title: "Minimalist Haven",
-      image: interior5,
-      description: "Clean lines and sophisticated simplicity",
-      price: "Custom Quote",
-      tag: "CONTEMPORARY"
+      title: "Wavy Cream & Black",
+      image: towel5,
+      description: "Modern wavy pattern in cream and black",
+      price: "€75",
+      tag: "DESIGNER"
     },
     {
-      title: "Artisanal Living",
-      image: interior6,
-      description: "Handcrafted details and unique pieces",
-      price: "Custom Quote",
-      tag: "EXCLUSIVE"
+      title: "Terracotta Rose Wave",
+      image: towel6,
+      description: "Elegant wavy design in terracotta and rose",
+      price: "€85",
+      tag: "SIGNATURE"
     }
   ];
 
@@ -114,13 +116,13 @@ const LuxuryInterior = () => {
             transition={{ duration: 1.5 }}
           >
             <div className="h-full">
-              <img src={interior1} alt="Modern Elegance" className="h-full w-full object-cover" />
+              <img src={towel1} alt="Forest Green Towel" className="h-full w-full object-cover" />
             </div>
             <div className="h-full">
-              <img src={interior2} alt="Boutique Living" className="h-full w-full object-cover" />
+              <img src={towel3} alt="Ivory Bath Set" className="h-full w-full object-cover" />
             </div>
             <div className="h-full">
-              <img src={interior3} alt="Urban Oasis" className="h-full w-full object-cover" />
+              <img src={towel6} alt="Terracotta Rose Towel" className="h-full w-full object-cover" />
             </div>
           </motion.div>
         </div>
@@ -133,11 +135,11 @@ const LuxuryInterior = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <h1 className="font-['Playfair_Display'] text-8xl font-bold text-white mb-6">
-              Luxury Interiors
+              Luxury Towels
             </h1>
             <p className="font-['Plus_Jakarta_Sans'] text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              Transform your space into a masterpiece of design with our bespoke interior solutions, 
-              where every detail is crafted to perfection.
+              Indulge in the ultimate comfort with our collection of premium towels, 
+              crafted from the finest materials for a spa-like experience at home.
             </p>
             <motion.button
               className="bg-white/10 backdrop-blur-sm text-white px-8 py-3 rounded-full border border-white/20 
@@ -145,7 +147,7 @@ const LuxuryInterior = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Start Your Journey
+              Explore Collection
             </motion.button>
           </motion.div>
 
@@ -172,7 +174,7 @@ const LuxuryInterior = () => {
           <div className="flex items-center gap-4 mb-8">
             <div className="w-20 h-[2px] bg-white/30" />
             <span className="text-white/60 font-['Plus_Jakarta_Sans'] uppercase tracking-wider">
-              Our Services
+              Our Collection
             </span>
           </div>
         </motion.div>
@@ -228,7 +230,7 @@ const LuxuryInterior = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-['Playfair_Display'] font-bold text-white">{item.price}</span>
                   <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded hover:bg-white/20 transition-colors">
-                    Enquire Now
+                    View Details
                   </button>
                 </div>
               </motion.div>
@@ -240,4 +242,4 @@ const LuxuryInterior = () => {
   );
 };
 
-export default LuxuryInterior;
+export default TowelDesign;

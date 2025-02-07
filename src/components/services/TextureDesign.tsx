@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import interior1 from '../../assets/services/2020-10_1_CARAVANE_066_0948365f-4db1-4195-81cc-1654bed38982.webp';
-import interior2 from '../../assets/services/CRVN_20240909_SHOPS-024_HD_94ff941a-106f-46ec-925d-d6805225da0b.webp';
-import interior3 from '../../assets/services/MG_5079.webp';
-import interior4 from '../../assets/services/MG_4617.webp';
-import interior5 from '../../assets/services/HSC_RAANA_-_BISCUIT.webp';
-import interior6 from '../../assets/services/CARAVANE_LYDIE_4Q9A9897.webp';
+import texture1 from '../../assets/textures/rebecca-atwood-carved-ogee-fabric-forest-green-small_600x600_crop_center.webp';
+import texture2 from '../../assets/textures/rebecca-atwood-budding-stripe-ocean-blue-small_600x600_crop_center.webp';
+import texture3 from '../../assets/textures/rebecca-atwood-candy-fabric-blue-tan-small_600x600_crop_center.webp';
+import texture4 from '../../assets/textures/rebecca-atwood-carved-ogee-fabric-clay-small_600x600_crop_center.webp';
+import texture5 from '../../assets/textures/rebecca-atwood-carved-ogee-fabric-lagoon-blue-fabric-cutting_600x600_crop_center.webp';
+import texture6 from '../../assets/textures/1.webp';
 
-const LuxuryInterior = () => {
+const TextureDesign = () => {
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
@@ -24,68 +24,68 @@ const LuxuryInterior = () => {
 
   const features = [
     {
-      title: "Bespoke Design",
-      description: "Tailored interior solutions for your unique space",
+      title: "Unique Patterns",
+      description: "Exclusive designs crafted by artisans",
       icon: "✧"
     },
     {
       title: "Premium Materials",
-      description: "Curated selection of luxury materials",
+      description: "High-quality fabrics and finishes",
       icon: "❖"
     },
     {
-      title: "Expert Styling",
-      description: "Professional interior styling services",
+      title: "Custom Creation",
+      description: "Bespoke patterns for your space",
       icon: "◈"
     },
     {
-      title: "Full Service",
-      description: "End-to-end project management",
+      title: "Versatile Use",
+      description: "Perfect for various applications",
       icon: "✦"
     }
   ];
 
   const collections = [
     {
-      title: "Modern Elegance",
-      image: interior1,
-      description: "Contemporary luxury with timeless appeal",
-      price: "Custom Quote",
+      title: "Forest Ogee",
+      image: texture1,
+      description: "Elegant ogee pattern in forest green",
+      price: "€129/m",
       tag: "SIGNATURE"
     },
     {
-      title: "Boutique Living",
-      image: interior2,
-      description: "Sophisticated retail-inspired spaces",
-      price: "Custom Quote",
+      title: "Ocean Stripe",
+      image: texture2,
+      description: "Flowing stripes in ocean blue tones",
+      price: "€149/m",
       tag: "PREMIUM"
     },
     {
-      title: "Urban Oasis",
-      image: interior3,
-      description: "Tranquil city living environments",
-      price: "Custom Quote",
+      title: "Blue Tan Candy",
+      image: texture3,
+      description: "Playful candy pattern in blue and tan",
+      price: "€139/m",
+      tag: "DESIGNER"
+    },
+    {
+      title: "Clay Ogee",
+      image: texture4,
+      description: "Classic ogee pattern in warm clay",
+      price: "€119/m",
+      tag: "CLASSIC"
+    },
+    {
+      title: "Lagoon Wave",
+      image: texture5,
+      description: "Fluid wave pattern in lagoon blue",
+      price: "€159/m",
       tag: "LUXURY"
     },
     {
-      title: "Classic Revival",
-      image: interior4,
-      description: "Traditional elegance reimagined",
-      price: "Custom Quote",
-      tag: "HERITAGE"
-    },
-    {
-      title: "Minimalist Haven",
-      image: interior5,
-      description: "Clean lines and sophisticated simplicity",
-      price: "Custom Quote",
-      tag: "CONTEMPORARY"
-    },
-    {
-      title: "Artisanal Living",
-      image: interior6,
-      description: "Handcrafted details and unique pieces",
-      price: "Custom Quote",
+      title: "Modern Abstract",
+      image: texture6,
+      description: "Contemporary abstract design",
+      price: "€169/m",
       tag: "EXCLUSIVE"
     }
   ];
@@ -114,13 +114,13 @@ const LuxuryInterior = () => {
             transition={{ duration: 1.5 }}
           >
             <div className="h-full">
-              <img src={interior1} alt="Modern Elegance" className="h-full w-full object-cover" />
+              <img src={texture1} alt="Forest Ogee" className="h-full w-full object-cover" />
             </div>
             <div className="h-full">
-              <img src={interior2} alt="Boutique Living" className="h-full w-full object-cover" />
+              <img src={texture2} alt="Ocean Stripe" className="h-full w-full object-cover" />
             </div>
             <div className="h-full">
-              <img src={interior3} alt="Urban Oasis" className="h-full w-full object-cover" />
+              <img src={texture3} alt="Blue Tan Candy" className="h-full w-full object-cover" />
             </div>
           </motion.div>
         </div>
@@ -133,11 +133,11 @@ const LuxuryInterior = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
           >
             <h1 className="font-['Playfair_Display'] text-8xl font-bold text-white mb-6">
-              Luxury Interiors
+              Luxury Textures
             </h1>
             <p className="font-['Plus_Jakarta_Sans'] text-xl text-white/80 max-w-2xl mx-auto mb-8">
-              Transform your space into a masterpiece of design with our bespoke interior solutions, 
-              where every detail is crafted to perfection.
+              Discover our exquisite collection of handcrafted textures and patterns, 
+              designed to transform your space into a masterpiece of tactile elegance.
             </p>
             <motion.button
               className="bg-white/10 backdrop-blur-sm text-white px-8 py-3 rounded-full border border-white/20 
@@ -145,7 +145,7 @@ const LuxuryInterior = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Start Your Journey
+              Explore Collection
             </motion.button>
           </motion.div>
 
@@ -172,7 +172,7 @@ const LuxuryInterior = () => {
           <div className="flex items-center gap-4 mb-8">
             <div className="w-20 h-[2px] bg-white/30" />
             <span className="text-white/60 font-['Plus_Jakarta_Sans'] uppercase tracking-wider">
-              Our Services
+              Our Collection
             </span>
           </div>
         </motion.div>
@@ -228,7 +228,7 @@ const LuxuryInterior = () => {
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-['Playfair_Display'] font-bold text-white">{item.price}</span>
                   <button className="bg-white/10 backdrop-blur-sm text-white px-4 py-2 rounded hover:bg-white/20 transition-colors">
-                    Enquire Now
+                    View Details
                   </button>
                 </div>
               </motion.div>
@@ -240,4 +240,4 @@ const LuxuryInterior = () => {
   );
 };
 
-export default LuxuryInterior;
+export default TextureDesign;
